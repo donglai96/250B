@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e04a0d9-2180-4699-9208-8e7a1c948c99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dispersion_solve.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/particle_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/250B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/250B.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dispersion_solver.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dispersion_solver.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distribution.py" beforeDir="false" afterPath="$PROJECT_DIR$/distribution.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JupyterTrust" id="0d403a04-4a71-42cb-9818-516e16bde115" />
+  <component name="JupyterTrust" id="6795cd2b-90dd-4f33-b0ce-567b06ce88a4" />
   <component name="ProjectId" id="1UMtz00VDLME0YyDkf1wpTiOS0H" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,9 +40,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.dispersion_solve">
+  <component name="RunManager" selected="Python.particle_class">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="250B" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,6 +69,9 @@
       <module name="250B" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -128,10 +131,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="particle_class" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="250B" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/particle_class.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dispersion_solve" />
+        <item itemvalue="Python.particle_class" />
         <item itemvalue="Python.distribution" />
+        <item itemvalue="Python.dispersion_solve" />
         <item itemvalue="Python.parameter" />
       </list>
     </recent_temporary>
@@ -161,6 +184,8 @@
       <workItem from="1576019171193" duration="12000" />
       <workItem from="1576019190655" duration="1583000" />
       <workItem from="1576020783927" duration="6347000" />
+      <workItem from="1576037496120" duration="750000" />
+      <workItem from="1576038391590" duration="13773000" />
     </task>
     <servers />
   </component>
@@ -181,29 +206,38 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1576020528276">
-      <screen x="0" y="0" width="2194" height="1194" />
+    <state width="904" height="281" key="GridCell.Tab.0.bottom" timestamp="1576044275887">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="904" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
     <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1576020528276">
-      <screen x="0" y="0" width="2194" height="1194" />
+    <state width="904" height="281" key="GridCell.Tab.0.center" timestamp="1576044275887">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="904" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
     <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1576020528276">
-      <screen x="0" y="0" width="2194" height="1194" />
+    <state width="904" height="281" key="GridCell.Tab.0.left" timestamp="1576044275887">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="904" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
     <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1576020528276">
-      <screen x="0" y="0" width="2194" height="1194" />
+    <state width="904" height="281" key="GridCell.Tab.0.right" timestamp="1576044275887">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="904" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
     <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state x="608" y="242" width="1119" height="715" key="SettingsEditor" timestamp="1576027140056">
-      <screen x="0" y="0" width="2194" height="1194" />
+    <state x="532" y="211" width="980" height="706" key="SettingsEditor" timestamp="1576038468958">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="532" y="211" width="980" height="706" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576038468958" />
     <state x="608" y="242" width="1119" height="715" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1576027140056" />
-    <state x="805" y="424" key="com.intellij.ide.util.TipDialog" timestamp="1576020790050">
-      <screen x="0" y="0" width="2194" height="1194" />
+    <state x="704" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1576038395279">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="704" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576038395279" />
     <state x="805" y="424" key="com.intellij.ide.util.TipDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1576020790050" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/250B$distribution.coverage" NAME="distribution Coverage Results" MODIFIED="1576043774470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

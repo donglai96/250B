@@ -6,6 +6,7 @@ import astropy as astropy
 from astropy import units as u
 from plasmapy.physics import parameters
 import numpy as np
+from scipy import integrate
 from scipy.special import gamma
 def _v_drift_units(v_drift):
     # Helper method to assign units to  v_drift if it takes a default value
@@ -74,26 +75,54 @@ def bi_maxwellian(vx,
     vSq_par = (vy - vy_drift) ** 2
     # calculating distribution function
     coeff = (vThSq_per * np.pi) ** (-1 / 2) * (vThSq_par * np.pi) ** (-1 / 2)
-    expTerm = np.exp(-vSq_par / vThSq_par)
+    expTerm = np.exp(-vSq_par / vThSq_par) * np.exp(-vSq_per / vThSq_per)
     distFunc = coeff * expTerm
     if units == "units":
         return distFunc.to((u.s / u.m)**2)
     elif units == "unitless":
         return distFunc
 
-p_dens = bi_maxwellian(vx= 1*u.m/u.s,
-                       vy= 1*u.m/u.s,
-                       T_per = 1500 *u.K,
-                       T_par = 3000 *u.K,
+p_dens = bi_maxwellian(vx= 0*u.m/u.s,
+                       vy= 0.5*u.m/u.s,
+                       T_per = 30 *u.K,
+                       T_par = 30 *u.K,
                        particle = 'e'
                        )
 print(p_dens)
 
 from plasmapy.physics.distribution import Maxwellian_velocity_2D
 
-p_dens_2  = Maxwellian_velocity_2D(vx= 1*u.m/u.s,
-                       vy= 1*u.m/u.s,
-                       T = 3000*u.K,
+p_dens_2  = Maxwellian_velocity_2D(vx= 0*u.m/u.s,
+                       vy= 0.5*u.m/u.s,
+                       T = 30*u.K,
                        particle = 'e'
                        )
 print(p_dens_2)
+
+T = 3e4 * u.K
+dv_par = 10 * u.m / u.s
+v_parallel = np.arange(-5e6, 5e6, 10) * u.m / u.s
+v_parallel = np.arange(0, 5e3, 10) * u.m / u.s
+# Intergrate
+sum_v = 0
+# for v_perp in v_parallel:
+#     pdf = bi_maxwellian(vx= v_perp, vy =v_parallel,T_per = T, T_par=T, particle='e')
+#     print(pdf.sum())
+# print(sum_v)
+T_per = T
+vth_per = parameters.thermal_speed(T = T_per ,particle ='e')
+print(vth_per)
+def bi_max(vx,vy,vth_per,vth_par):
+    return ((vth_per**2 * np.pi) ** (-1 / 2) * (vth_par**2 * np.pi) ** (-1 / 2)) *\
+           np.exp(-vx**2 / vth_per**2) * np.exp(-vy**2 / vth_par**2)
+v, err = integrate.dblquad(bi_max, 0, np.inf, - np.inf, np.inf, args=(23,2))
+print(v)
+
+class particles:
+    particle_name = 'ion'
+
+c = particles
+d = particles
+d.particle_name = 'electron'
+print(c.particle_name)
+print(d.particle_name)
