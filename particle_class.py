@@ -17,6 +17,8 @@ from scipy import integrate
 from scipy.special import gamma
 from sympy import besselj,jn
 from sympy import DiracDelta
+from sympy import cos
+import dispersion_solve
 
 class particle():
     def __init__(self,name,distribution,density,magnetic_field, T_perp, T_para):
@@ -40,7 +42,7 @@ class particle():
 
         return coeff*expterm
 
-    def g1_term_1(self):
+    def g1_term(self):
         """
         From Kennel 1966
 
@@ -51,7 +53,9 @@ class particle():
         # vx is v_perpendicular and vy is v_parallel
         vx = symbols('vx')
         vy = symbols('vy')
-        return diff(self.F(),vx)
+        k_para = symbols('k_para')
+        omega = symbols('w')
+        return diff(self.F(),vx) - k_para * (vy * diff(self.F(),vx) - vx * diff(self.F(),vy))/omega
     def g1_term_2(self):
         vx = symbols('vx')
         vy = symbols('vy')
@@ -79,36 +83,46 @@ class particle():
         w = symbols('w')
         argument = vy - (w - m * self.gyrof.value)/k_para
         return DiracDelta(argument)
+    def weight_function(self,m):
+        """
+        from Kennel 1966
+
+        @param m:
+        @return: function with theta
+        """
+        theta = symbols('theta')
+        gamma_m = (((1 + cos(theta))*self.Jm(m+1) + (1-cos(theta))*self.Jm(m-1))/(2*cos(theta)))**2
+        return gamma_m
 
 
 
 
 
 
-
-
-species = ['e', 'p']
-B = 1e-5 * u.T
-n = [1e10 * u.m ** -3, 1e10 * u.m ** -3]
-T = 300*u.K
-
-
-
-ion = particle('p','bi',n[0], B,T,T)
-electron = particle('e', 'bi', n[0], B,T,2*T)
-print (ion.name)
-print(ion.gyrof)
-print(ion.plasmaf)
-print(electron.name)
-print(electron.gyrof)
-print(electron.plasmaf)
-print(electron.F())
-vx = symbols('vx')
-print(diff(vx *electron.F(),vx))
-print('test',electron.g1_term_2())
-
-from sympy.abc import y,n
-
-print("test", electron.Jm(0))
-print('gyro',electron.gyrof)
-print('Delta', electron.delta_function(1))
+#
+# species = ['e', 'p']
+# B = 1e-5 * u.T
+# n = [1e10 * u.m ** -3, 1e10 * u.m ** -3]
+# T = 300*u.K
+#
+#
+#
+# ion = particle('p','bi',n[0], B,T,T)
+# electron = particle('e', 'bi', n[0], B,T,2*T)
+# print (ion.name)
+# print(ion.gyrof)
+# print(ion.plasmaf)
+# print(electron.name)
+# print(electron.gyrof)
+# print(electron.plasmaf)
+# print(electron.F())
+# vx = symbols('vx')
+# print(diff(vx *electron.F(),vx))
+# print('test',electron.g1_term_2())
+#
+# from sympy.abc import y,n
+#
+# print("test", electron.Jm(0))
+# print('gyro',electron.gyrof)
+# print('Delta', electron.delta_function(1))
+# print('Weight',electron.weight_function(1))

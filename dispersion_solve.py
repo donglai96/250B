@@ -66,15 +66,19 @@ def dispersion_matrix(B, species, n, theta,  omega = 0 , k_wave = 0, mode = 'w')
 
     if mode =='k':
         k = k_wave
-        w = symbols('w')
+
         L, R, P = cold_plasma_LRP(B,species,n,omega,flag = False)
     elif mode == 'w':
         k = symbols('k')
-        w = omega.value
+
         L, R, P = cold_plasma_LRP(B,species,n,omega,flag = True)
 
+    print(k)
+    k_unit = (u.rad/u.m)*const.c/omega
+    nn = k * k_unit
 
-    nn = k* const.c.value/w
+    print(nn)
+
     theta_rad = theta * np.pi / 180
 
     m_11 = 2 * (R - nn ** 2 + 0.5 * nn ** 2 * (math.sin(theta_rad)) ** 2)

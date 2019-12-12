@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e04a0d9-2180-4699-9208-8e7a1c948c99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/particle_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/250B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/250B.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gama_theta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/growth_rate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribution.py" beforeDir="false" afterPath="$PROJECT_DIR$/distribution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dispersion_solve.py" beforeDir="false" afterPath="$PROJECT_DIR$/dispersion_solve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dispersion_solver.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dispersion_solver.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/particle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/particle_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Jupyter Notebook" />
         <option value="Python Script" />
       </list>
     </option>
@@ -42,7 +45,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.particle_class">
+  <component name="RunManager" selected="Python.growth_rate">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="250B" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,44 +90,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="distribution" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="gama_theta" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="250B" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/distribution.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gama_theta.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="parameter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="growth_rate" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="250B" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/parameter.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/growth_rate.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -135,6 +132,9 @@
       <module name="250B" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -150,12 +150,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="250B" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.particle_class" />
-        <item itemvalue="Python.distribution" />
+        <item itemvalue="Python.growth_rate" />
+        <item itemvalue="Python.gama_theta" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.dispersion_solve" />
-        <item itemvalue="Python.parameter" />
+        <item itemvalue="Python.particle_class" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +208,12 @@
       <workItem from="1576019190655" duration="1583000" />
       <workItem from="1576020783927" duration="6347000" />
       <workItem from="1576037496120" duration="750000" />
-      <workItem from="1576038391590" duration="13773000" />
+      <workItem from="1576038391590" duration="14886000" />
+      <workItem from="1576098442789" duration="9699000" />
+      <workItem from="1576108987055" duration="440000" />
+      <workItem from="1576109435945" duration="489000" />
+      <workItem from="1576109934098" duration="12573000" />
+      <workItem from="1576131834319" duration="2310000" />
     </task>
     <servers />
   </component>
@@ -206,38 +234,59 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="904" height="281" key="GridCell.Tab.0.bottom" timestamp="1576044275887">
+    <state width="586" height="345" key="GridCell.Tab.0.bottom" timestamp="1576131708131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="904" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
+    <state width="586" height="345" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
     <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state width="904" height="281" key="GridCell.Tab.0.center" timestamp="1576044275887">
+    <state width="586" height="345" key="GridCell.Tab.0.center" timestamp="1576131708131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="904" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
+    <state width="586" height="345" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
     <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state width="904" height="281" key="GridCell.Tab.0.left" timestamp="1576044275887">
+    <state width="586" height="345" key="GridCell.Tab.0.left" timestamp="1576131708131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="904" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
+    <state width="586" height="345" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
     <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state width="904" height="281" key="GridCell.Tab.0.right" timestamp="1576044275887">
+    <state width="586" height="345" key="GridCell.Tab.0.right" timestamp="1576131708131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="904" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576044275887" />
+    <state width="586" height="345" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
     <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194@0.0.2194.1194" timestamp="1576020528276" />
-    <state x="532" y="211" width="980" height="706" key="SettingsEditor" timestamp="1576038468958">
+    <state width="586" height="345" key="GridCell.Tab.1.bottom" timestamp="1576131708131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="532" y="211" width="980" height="706" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576038468958" />
+    <state width="586" height="345" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
+    <state width="586" height="345" key="GridCell.Tab.1.center" timestamp="1576131708131">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="586" height="345" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
+    <state width="586" height="345" key="GridCell.Tab.1.left" timestamp="1576131708131">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="586" height="345" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
+    <state width="586" height="345" key="GridCell.Tab.1.right" timestamp="1576131708131">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="586" height="345" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576131708131" />
+    <state x="724" y="126" width="980" height="706" key="SettingsEditor" timestamp="1576108831781">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="724" y="126" width="980" height="706" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576108831781" />
     <state x="608" y="242" width="1119" height="715" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1576027140056" />
-    <state x="704" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1576038395279">
+    <state x="704" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1576131834745">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="704" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576038395279" />
+    <state x="704" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576131834745" />
     <state x="805" y="424" key="com.intellij.ide.util.TipDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1576020790050" />
+    <state x="974" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1576125841074">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="974" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576125841074" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/250B$gama_theta.coverage" NAME="gama_theta Coverage Results" MODIFIED="1576110524590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/250B$distribution.coverage" NAME="distribution Coverage Results" MODIFIED="1576043774470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
