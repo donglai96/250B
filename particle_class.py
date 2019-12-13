@@ -69,6 +69,20 @@ class particle():
         k_para = symbols('k_para')
         omega = symbols('w')
         return diff(self.F(),vx)
+
+    def g1_term_p(self):
+        """
+        change vx to r
+        @return:
+        """
+        k_perp = symbols('k_perp')
+        vx = symbols('vx')
+        r = symbols('r')
+        vv_perp = r * self.gyrof.value/ k_perp
+        c = self.g1_term().subs([(vx,vv_perp)])
+        return c
+
+
     def Jm(self,m):
         """
         The argument of Jm is k_perp * v_perp(vx)/gyro
@@ -80,6 +94,17 @@ class particle():
         vx = symbols('vx')
         argument = k_perp * vx /self.gyrof.value
         return besselj(m,argument)
+    def Jm_p(self,m):
+        """
+        The argument of Jm change to r
+        r = k_perp*v_perp/Omega
+        @param m: the order of Bessel function
+        @return:
+        """
+        r = symbols('r')
+        argument = r
+        return besselj(m,argument)
+
     def delta_function(self,m):
         """
         The argument of Dirac is v_para - (w -m*Omega/k_parallel)
@@ -101,8 +126,11 @@ class particle():
         theta = symbols('theta')
         gamma_m = (((1 + cos(theta))*self.Jm(m+1) + (1-cos(theta))*self.Jm(m-1))/(2*cos(theta)))**2
         return gamma_m
+    def weight_function_p(self,m):
+        theta = symbols('theta')
+        gamma_m = (((1 + cos(theta))*self.Jm_p(m+1) + (1-cos(theta))*self.Jm_p(m-1))/(2*cos(theta)))**2
 
-
+        return gamma_m
 
 
 

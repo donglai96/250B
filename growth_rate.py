@@ -43,34 +43,31 @@ def growth_rate_electron(B, n, T_perp, T_para):
 
     return gama_term, inter_term, test_term
 
-#
-#
-# species = ['e', 'p']
-# B = 1e-5 * u.T
-# n = [1e10 * u.m ** -3, 1e10 * u.m ** -3]
-# T = 300*u.K
-# T_perp = T
-# T_para = 2*T
-# electron = particle_class.particle('e','bi_maxwellian',n[0],B,T_perp, T_para)
-# theta_sub = 30
-# theta = symbols('theta')
-#
-# m = 1
-# f = electron.weight_function(m)*electron.g1_term_2()
-# print(f)
-# c= cos(90)
-# print(c.evalf())
-# vx = symbols('vx')
-# vy = symbols('vy')
-# omega = symbols('w')
-# k_wave = symbols('k')
-# sum_term = 0
-# for m in range(-10, 10):
-#     sum_term = sum_term + electron.weight_function(m) * electron.g1_term() * electron.delta_function(m)
-# print(sympify(sum_term))
-# gama_term = (math.pi ** 2 * abs(electron.gyrof.value) * omega / k_wave)
-# f = vy ** 2 * sum_term
-# inter = Integral(f, (vx, 0, oo), (vy, -oo, oo))
-# print(sympify(inter*gama_term))
-# gama = growth_rate_electron(B,n,T_perp, T_para)
-# print(gama)
+
+def growth_rate_part(B, n , T_perp, T_para, m):
+    """
+    This is for calculation of different wave growth part which means Landau resonance and cyclotron resonance
+
+    In this part will not do the integration.
+    The argument in Jm was k_perp * v_perp /Omega and it must be convert into r because it's hard for python to
+    do the integration like Jm(0,a*x)^2 but only Jm(0,x)
+    @param B:
+    @param n:
+    @param T_perp:
+    @param T_para:
+    @param m: m = -1,0,1...
+    @return: The growth rate befor integration
+    """
+    electron = particle_class.particle('e','bi_maxwellian',n[0],B,T_perp, T_para)
+    omega = symbols('w')
+    r = symbols('r')
+    k_wave = symbols('k')
+    k_perp = symbols('k_perp')
+    vx = r * electron.gyrof.value/k_perp
+    vy = symbols('vy')
+
+
+    coeff_term =  (pi ** 2 * (-electron.gyrof.value) * omega / k_wave)
+    integral_term = vx**2 * electron.weight_function_p(m)*electron.g1_term_p()*electron.delta_function(m)
+
+    return coeff_term, integral_term
