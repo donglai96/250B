@@ -17,7 +17,7 @@ from scipy import integrate
 from scipy.special import gamma
 from sympy import besselj,jn
 from sympy import DiracDelta
-from sympy import cos
+from sympy import cos,pi
 import dispersion_solve
 
 class particle():
@@ -37,8 +37,15 @@ class particle():
         """
         vx = symbols('vx')
         vy = symbols('vy')
-        coeff = ((self.vth_perp.value**2 * np.pi) ** (-1 / 2) * (self.vth_para.value**2 * np.pi) ** (-1 / 2))
-        expterm = exp(-vx**2 / self.vth_perp.value**2) * exp(-vy**2 / self.vth_para.value**2)
+        vth_x = symbols('vth_x')
+        vth_y = symbols('vth_y')
+
+        # coeff = ((self.vth_perp.value**2 * np.pi) ** (-1 / 2) * (self.vth_para.value**2 * np.pi) ** (-1 / 2))
+        # The vx means v perpendicular!!
+        # coeff = pi**(-3/2)*(self.vth_perp.value**-2)*self.vth_para.value**-1
+        # expterm = exp(-vx**2 / self.vth_perp.value**2) * exp(-vy**2 / self.vth_para.value**2)
+        coeff = pi ** (-3 / 2) * (vth_x ** -2) * vth_y ** -1
+        expterm = exp(-vx**2 / vth_x**2) * exp(-vy**2 / vth_y**2)
 
         return coeff*expterm
 
@@ -59,8 +66,9 @@ class particle():
     def g1_term_2(self):
         vx = symbols('vx')
         vy = symbols('vy')
-
-        return vy * diff(self.F(),vx) - vx * diff(self.F(),vy)
+        k_para = symbols('k_para')
+        omega = symbols('w')
+        return diff(self.F(),vx)
     def Jm(self,m):
         """
         The argument of Jm is k_perp * v_perp(vx)/gyro

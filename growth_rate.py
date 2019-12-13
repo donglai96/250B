@@ -3,7 +3,7 @@ import particle_class
 import math
 from astropy import units as u
 from sympy import symbols
-from sympy import sympify
+from sympy import sympify,pi
 from sympy import cos
 from sympy import Integral
 from sympy import integrate
@@ -33,14 +33,15 @@ def growth_rate_electron(B, n, T_perp, T_para):
     vx = symbols('vx')
     vy = symbols('vy')
     sum_term = 0
-    for m in range(-10,10):
+    for m in range(-1,2):
         sum_term  = sum_term + electron.weight_function(m)*electron.g1_term()*electron.delta_function(m)
-    gama_term = (math.pi ** 2 * abs(electron.gyrof.value) * omega / k_wave)
-    inter_term = vy**2 * sum_term
+    gama_term = (pi ** 2 * (-electron.gyrof.value) * omega / k_wave)
+    inter_term = vx**2 * sum_term
+    test_term = electron.g1_term()
     # inter = Integral(f,(vx,0,oo),(vy,-oo,oo))
 
 
-    return gama_term, inter_term
+    return gama_term, inter_term, test_term
 
 #
 #

@@ -6,7 +6,7 @@ from plasmapy.physics import parameters
 from sympy.solvers import solve
 from sympy import symbols
 from sympy import Matrix
-from sympy import cos,sin
+from sympy import cos,sin,pi
 from sympy import simplify, integrate, oo,exp
 import math
 from sympy import solveset, S
@@ -42,7 +42,7 @@ def solve_dispersion(B, species, n, wave_frequency, theta_input):
 
 
     # Get the function
-    theta_deg = theta_input *math.pi/180
+    theta_deg = theta_input *pi/180
     D_0 = dispersion_matrix()
     L_wave, R_wave, P_wave = dispersion_solve.cold_plasma_LRP(B, species, n, wave_frequency)
     f = simplify(D_0.det())
@@ -55,46 +55,57 @@ def solve_dispersion(B, species, n, wave_frequency, theta_input):
 
 # Solve the nn
 #
-# species = ['e','p']
-# T_perp = 100 * u.K
-# T_para = 50 * u.K
-# B = 1e-5 * u.T
-# n = [1e10 * u.m ** -3, 1e10 * u.m ** -3]
-# theta_input = 30
-# theta_deg = theta_input *math.pi/180
-# gyro_frequency = parameters.gyrofrequency(B, 'e')
-# wave_frequency = 0.1 * gyro_frequency
-# print(gyro_frequency)
-# re_index = solve_dispersion(B,species,n,wave_frequency,theta_input)
-# print(re_index[0])
-# nn = re_index[0]
+species = ['e','p']
+T_perp = 100 * u.K
+T_para = 50 * u.K
+B = 1e-6 * u.T
+n = [300e6 * u.m ** -3, 300e6 * u.m ** -3]
+theta_input = 30
+theta_deg = theta_input *pi/180
+gyro_frequency = parameters.gyrofrequency(B, 'e')
+wave_frequency = 0.05 * gyro_frequency
+print(wave_frequency)
+
+# solve L,R,P
+
+re_index = solve_dispersion(B,species,n,wave_frequency,theta_input)
+print(re_index[0])
+nn = re_index[0]
 #
 # # solve the gamma
-# gamma_term, inter_term = growth_rate.growth_rate_electron(B,n,T_perp, T_para)
+gamma_term, inter_term, test_term = growth_rate.growth_rate_electron(B,n,T_perp, T_para)
 # print(inter_term.free_symbols)
 # print('gamma_term',gamma_term)
 # print('inter_term',inter_term)
-# theta = symbols('theta')
-# k_para = symbols('k_para')
-# k_perp = symbols('k_perp')
-# k = symbols('k')
-# w = symbols('w')
-# vx = symbols('vx')
-# vy = symbols('vy')
+theta = symbols('theta')
+k_para = symbols('k_para')
+k_perp = symbols('k_perp')
+k = symbols('k')
+w = symbols('w')
+vx = symbols('vx')
+vy = symbols('vy')
 #
-# kk = (nn * wave_frequency/const.c).value
-# kk_para = kk * cos(theta_deg)
-# kk_perp = kk * sin(theta_deg)
+kk = (nn * wave_frequency/const.c).value
+
+kk_para = kk * cos(theta_deg)
+kk_perp = kk * sin(theta_deg)
 #
-# inter_term_new = inter_term.subs([(theta,theta_deg),(k_para,kk_para),(k,kk),(k_perp,kk_perp),(w,wave_frequency.value)])
-# inter_term_new = simplify(inter_term_new)
-# print(inter_term_new)
-# integrate_gamma = integrate(inter_term_new,(vx,0,oo),(vy,-oo,oo))
+inter_term_new = inter_term.subs([(theta,theta_deg),(k_para,kk_para),(k,kk),(k_perp,kk_perp),(w,wave_frequency.value)])
+inter_term_new = simplify(inter_term_new)
+print(inter_term_new)
+print("test_term ",test_term)
+print(simplify(test_term))
+# integrate_gamma = integrate(inter_term_new,(vx,0,oo))
 # print(integrate_gamma)
-# # print(gamma_cold)
+
 a = symbols('a')
 b = symbols('b')
-r = symbols('r')
-f = r * exp(-a*r**2)*besselj(0,b*r)
-c = integrate(f,(r,0,oo))
-print(c)
+
+testvx = vy*test_term *DiracDelta(vy-1)
+test_inte = integrate(testvx,(vy,-oo,oo))
+print(test_inte)
+# test for calculation of bessel integration
+testvxx = besselj(1, a *vx ) * vx**3 *exp(-vx**2)
+print(testvxx)
+test_vxx_result = integrate(testvxx,(vx,0,oo))
+print('test_result',test_vxx_result.subs([(a,1)]).evalf())
