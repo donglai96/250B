@@ -67,7 +67,18 @@ def growth_rate_part(B, n , T_perp, T_para, m):
     vy = symbols('vy')
 
 
-    coeff_term =  (pi ** 2 * (-electron.gyrof.value) * omega / k_wave)
+    coeff_term =  (pi ** 2 * (-electron.gyrof.value) * omega / k_wave) * (k_wave /electron.gyrof.value)
     integral_term = vx**2 * electron.weight_function_p(m)*electron.g1_term_p()*electron.delta_function(m)
 
-    return coeff_term, integral_term
+    return coeff_term, integral_term, electron.vth_perp ,electron.vth_para
+
+def growth_rate_para (B, n , T_perp, T_para):
+    electron = particle_class.particle('e', 'bi_maxwellian', n[0], B, T_perp, T_para)
+    omega = symbols('w')
+    k_wave = symbols('k')
+    vx = symbols('vx')
+    coeff_term = (pi ** 2 * (-electron.gyrof.value) * omega / k_wave) * (k_wave / electron.gyrof.value)
+    integral_term = vx *electron.g1_term_parallel()
+    integral_term= vx**2 *electron.F()
+    integral_term_new= electron.f_term_not()
+    return coeff_term, integral_term , electron.vth_perp ,electron.vth_para,integral_term_new

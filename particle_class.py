@@ -44,8 +44,12 @@ class particle():
         # The vx means v perpendicular!!
         # coeff = pi**(-3/2)*(self.vth_perp.value**-2)*self.vth_para.value**-1
         # expterm = exp(-vx**2 / self.vth_perp.value**2) * exp(-vy**2 / self.vth_para.value**2)
-        coeff = pi ** (-3 / 2) * (vth_x ** -2) * vth_y ** -1
-        expterm = exp(-vx**2 / vth_x**2) * exp(-vy**2 / vth_y**2)
+
+        # coeff = pi ** (-3 / 2) * (vth_x ** -2) * vth_y ** -1
+        # expterm = exp(-vx**2 / vth_x**2) * exp(-vy**2 / vth_y**2)
+
+        coeff = pi ** (-2 / 2) * (vth_x ** -1) * vth_y ** -1
+        expterm = exp(-vx ** 2 / vth_x ** 2) * exp(-vy ** 2 / vth_y ** 2)
 
         return coeff*expterm
 
@@ -81,6 +85,28 @@ class particle():
         vv_perp = r * self.gyrof.value/ k_perp
         c = self.g1_term().subs([(vx,vv_perp)])
         return c
+    def g1_term_parallel(self):
+        vx = symbols('vx')
+        vy = symbols('vy')
+        omega = symbols('w')
+        k = symbols('k')
+        v_para = (omega + self.gyrof.value)/k
+
+        g1 = diff(self.F(), vx)
+        g1_para = g1.subs([(vy,v_para )])
+        return g1_para
+    def f_term_not(self):
+        vx = symbols('vx')
+        vy = symbols('vy')
+        omega = symbols('w')
+        k = symbols('k')
+        v_para = (omega + self.gyrof.value)/k
+
+        g1 = self.F()
+        g1_para = g1.subs([(vy,v_para )])
+        return g1_para
+
+
 
 
     def Jm(self,m):
